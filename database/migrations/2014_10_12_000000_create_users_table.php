@@ -21,6 +21,46 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('region',function (Blueprint $table){
+            $table->id();
+            $table->string('nombre');
+            $table->string('identificador');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('proyecto',function (Blueprint $table){
+            $table->id();
+            $table->unsignedBigInteger('id_region');
+            $table->foreign('id_region')->references('id')->on('region')->onDelete('cascade');
+            $table->string('nombre');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('gerentes', function (Blueprint $table){
+            $table->id();
+            $table->unsignedBigInteger('id_proyecto');
+            $table->foreign('id_proyecto')->references('id')->on('proyecto')->onDelete('cascade');
+            $table->string('nombre');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('operaciones', function(Blueprint $table){
+            $table->id();
+            $table->unsignedBigInteger('id_proyecto');
+            $table->foreign('id_proyecto')->references('id')->on('proyecto')->onDelete('cascade');
+            $table->integer('dia');
+            $table->integer('no_operaciones');
+            $table->integer('ano');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,5 +72,9 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('operaciones');
+        Schema::dropIfExists('gerentes');
+        Schema::dropIfExists('proyecto');   
+        Schema::dropIfExists('region');
     }
 }
