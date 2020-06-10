@@ -25,3 +25,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified');
+
+Route::resource('gerentes', 'GerenteController');
+
+Route::resource('operacions', 'OperacionController');
+
+Route::resource('proyectos', 'ProyectoController');
+
+Route::resource('regions', 'RegionController');
+
+Route::resource('users', 'UserController');
