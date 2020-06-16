@@ -123,7 +123,7 @@ class RegionController extends AppBaseController
 
         $region = $this->regionRepository->update($request->all(), $id);
 
-        Flash::success('Region updated successfully.');
+        Flash::success('Region actualizada satisfactoriamente.');
 
         return redirect(route('regions.index'));
     }
