@@ -8,6 +8,8 @@ use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Response;
 
 class UserController extends AppBaseController
@@ -56,9 +58,13 @@ class UserController extends AppBaseController
     {
         $input = $request->all();
 
-        $user = $this->userRepository->create($input);
+        //dd($input);
 
-        Flash::success('User saved successfully.');
+        $input['password'] = Hash::make($input['password']);
+        $user = $this->userRepository->create($input);
+        //$user = $this->userRepository->create($input);
+        //dd($user);
+        Flash::success('Usuario agregado correctamente.');
 
         return redirect(route('users.index'));
     }
@@ -92,10 +98,14 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
-        $user = $this->userRepository->find($id);
+        $user = DB::table('users')
+            ->where('id','=', $id)
+            ->get();
+        //dd($user);
+        //$user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('Usuario no encontrado');
 
             return redirect(route('users.index'));
         }
@@ -113,17 +123,42 @@ class UserController extends AppBaseController
      */
     public function update($id, UpdateUserRequest $request)
     {
-        $user = $this->userRepository->find($id);
+        $input = \request()->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'password' => '',
+        ]);
+
+        //dd($input);
+        //$user = $this->userRepository->find($id);
+        $user = DB::table('users')->select('id', 'name', 'email', 'password')->where('id', '=', $id)->get();
+        //dd($user);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('Usuario no encontrado');
 
             return redirect(route('users.index'));
         }
 
-        $user = $this->userRepository->update($request->all(), $id);
+        if ($input['name'] != null) {
+            $up = DB::table('users')
+                ->where('id', '=', $id)
+                ->update(['name' => $input['name']]);
+        }
+        if ($input['email'] != null) {
+            $up = DB::table('users')
+                ->where('id', '=', $id)
+                ->update(['email' => $input['email']]);
+        }
+        if ($input['password'] != null) {
+            $up = DB::table('users')
+                ->where('id', '=', $id)
+                ->update(['password' => Hash::make($input['password'])]);
+        }
+        //$user = $this->userRepository->update($request->all(), $id);
 
-        Flash::success('User updated successfully.');
+
+        Flash::success('Usuario actualizado correctamente.');
 
         return redirect(route('users.index'));
     }
@@ -149,7 +184,7 @@ class UserController extends AppBaseController
 
         $this->userRepository->delete($id);
 
-        Flash::success('User deleted successfully.');
+        Flash::success('Usuario eliminado exitosamente');
 
         return redirect(route('users.index'));
     }

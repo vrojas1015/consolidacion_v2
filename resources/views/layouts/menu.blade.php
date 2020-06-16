@@ -3,7 +3,7 @@
 </li>
 
 <li class="{{ Request::is('operacions*') ? 'active' : '' }}">
-    <a href="{{ route('operacions.index') }}"><i class="fa fa-edit"></i><span>Operacions</span></a>
+    <a href="{{ route('operacions.index') }}"><i class="fa fa-edit"></i><span>Operaciones</span></a>
 </li>
 
 <li class="{{ Request::is('proyectos*') ? 'active' : '' }}">
@@ -11,10 +11,10 @@
 </li>
 
 <li class="{{ Request::is('regions*') ? 'active' : '' }}">
-    <a href="{{ route('regions.index') }}"><i class="fa fa-edit"></i><span>Regions</span></a>
+    <a href="{{ route('regions.index') }}"><i class="fa fa-edit"></i><span>Regiones</span></a>
 </li>
 
 <li class="{{ Request::is('users*') ? 'active' : '' }}">
-    <a href="{{ route('users.index') }}"><i class="fa fa-edit"></i><span>Users</span></a>
+    <a href="{{ route('users.index') }}"><i class="fa fa-edit"></i><span>Usuarios</span></a>
 </li>
 
