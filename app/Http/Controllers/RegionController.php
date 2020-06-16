@@ -58,7 +58,7 @@ class RegionController extends AppBaseController
 
         $region = $this->regionRepository->create($input);
 
-        Flash::success('Region saved successfully.');
+        Flash::success('Region añadida satisfactoriamente.');
 
         return redirect(route('regions.index'));
     }
