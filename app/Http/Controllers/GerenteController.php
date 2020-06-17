@@ -8,6 +8,7 @@ use App\Repositories\GerenteRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Hash;
 use Response;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +34,7 @@ class GerenteController extends AppBaseController
         //$gerentes = $this->gerenteRepository->all();
         $gerentes = DB::table('gerentes')
             ->join('proyecto', 'proyecto.id', '=', 'gerentes.id_proyecto')
-            ->select('gerentes.*', 'proyecto.Nombre as ProyectoNombre')
+            ->select('gerentes.*', 'proyecto.nombre as ProyectoNombre')
             ->paginate(50);
 
         return view('gerentes.index')
@@ -47,7 +48,9 @@ class GerenteController extends AppBaseController
      */
     public function create()
     {
-        return view('gerentes.create');
+        $proyectos = DB::table('proyecto')->select('id', 'nombre')->get();
+
+        return view('gerentes.create')->with('proyectos', $proyectos);
     }
 
     /**
@@ -61,9 +64,14 @@ class GerenteController extends AppBaseController
     {
         $input = $request->all();
 
+        //dd($input);
+
+        $input['password'] = Hash::make($input['password']);
         $gerente = $this->gerenteRepository->create($input);
 
-        Flash::success('Gerente saved successfully.');
+        //$gerente = $this->gerenteRepository->create($input);
+
+        Flash::success('Gerente añadido satisfactoriamente.');
 
         return redirect(route('gerentes.index'));
     }
@@ -97,7 +105,15 @@ class GerenteController extends AppBaseController
      */
     public function edit($id)
     {
-        $gerente = $this->gerenteRepository->find($id);
+        //$gerente = $this->gerenteRepository->find($id);
+        $gerente = DB::table('gerentes')
+            ->join('proyecto', 'gerentes.id_proyecto', '=', 'proyecto.id')
+            ->select('proyecto.nombre', 'gerentes.id', 'gerentes.nombre', 'gerentes.email', 'gerentes.password')
+            ->where('gerentes.id', '=', $id)
+            ->get();
+        //dd($gerente);
+        $proyectos = DB::table('proyecto')->select('id', 'nombre')->get();
+        //dd($proyectos);
 
         if (empty($gerente)) {
             Flash::error('Gerente not found');
@@ -105,7 +121,8 @@ class GerenteController extends AppBaseController
             return redirect(route('gerentes.index'));
         }
 
-        return view('gerentes.edit')->with('gerente', $gerente);
+        return view('gerentes.edit')->with('gerentes', $gerente)
+            ->with('proyectos', $proyectos);
     }
 
     /**
@@ -118,7 +135,17 @@ class GerenteController extends AppBaseController
      */
     public function update($id, UpdateGerenteRequest $request)
     {
-        $gerente = $this->gerenteRepository->find($id);
+        //$gerente = $this->gerenteRepository->find($id);
+        //dd(request()->all());
+        $input = \request()->validate([
+            'id_proyecto' => 'integer',
+            'nombre' => 'string',
+            'email' => 'email',
+            'password' => '',
+        ]);
+
+        $gerente = DB::table('gerentes')->select('id', 'nombre', 'email', 'password', 'id_proyecto')->where('id', '=', $id)->get();
+        //dd($gerente);
 
         if (empty($gerente)) {
             Flash::error('Gerente not found');
@@ -126,9 +153,30 @@ class GerenteController extends AppBaseController
             return redirect(route('gerentes.index'));
         }
 
-        $gerente = $this->gerenteRepository->update($request->all(), $id);
+        if ($input['id_proyecto'] != null) {
+            $up = DB::table('gerentes')
+                ->where('id', '=', $id)
+                ->update(['id_proyecto' => $input['id_proyecto']]);
+        }
+        if ($input['nombre'] != null) {
+            $up = DB::table('gerentes')
+                ->where('id', '=', $id)
+                ->update(['nombre' => $input['nombre']]);
+        }
+        if ($input['email'] != null) {
+            $up = DB::table('gerentes')
+                ->where('id', '=', $id)
+                ->update(['email' => $input['email']]);
+        }
+        if ($input['password'] != null) {
+            $up = DB::table('gerentes')
+                ->where('id', '=', $id)
+                ->update(['password' => Hash::make($input['password'])]);
+        }
 
-        Flash::success('Gerente updated successfully.');
+        //$gerente = $this->gerenteRepository->update($request->all(), $id);
+
+        Flash::success('Gerente actualizado satisfactoriamente.');
 
         return redirect(route('gerentes.index'));
     }
@@ -138,13 +186,17 @@ class GerenteController extends AppBaseController
      *
      * @param int $id
      *
+     * @return Response
      * @throws \Exception
      *
-     * @return Response
      */
     public function destroy($id)
     {
-        $gerente = $this->gerenteRepository->find($id);
+        $gerente = DB::table('gerentes')
+            ->where('id','=', $id)
+            ->first();
+        //dd($gerente);
+        //$gerente = $this->gerenteRepository->find($id);
 
         if (empty($gerente)) {
             Flash::error('Gerente not found');
@@ -152,9 +204,10 @@ class GerenteController extends AppBaseController
             return redirect(route('gerentes.index'));
         }
 
-        $this->gerenteRepository->delete($id);
+        $sql = DB::table('gerentes')->where('id','=', $id)->delete();
+        //$this->gerenteRepository->delete($id);
 
-        Flash::success('Gerente deleted successfully.');
+        Flash::success('Gerente eliminado.');
 
         return redirect(route('gerentes.index'));
     }
