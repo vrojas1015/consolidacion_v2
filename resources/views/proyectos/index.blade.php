@@ -10,6 +10,7 @@
     <div class="content">
         <div class="clearfix"></div>
 
+        @include('layouts.errors')
         @include('flash::message')
 
         <div class="clearfix"></div>
