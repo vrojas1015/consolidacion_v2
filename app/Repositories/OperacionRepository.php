@@ -19,6 +19,7 @@ class OperacionRepository extends BaseRepository
     protected $fieldSearchable = [
         'id_proyecto',
         'dia',
+        'mes',
         'no_operaciones',
         'ano'
     ];

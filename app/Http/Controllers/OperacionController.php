@@ -53,7 +53,9 @@ class OperacionController extends AppBaseController
      */
     public function create()
     {
-        return view('operacions.create');
+        $proyectos = DB::table('proyecto')->select('id', 'nombre')->get();
+
+        return view('operacions.create')->with('proyectos', $proyectos);
     }
 
     /**
@@ -65,7 +67,9 @@ class OperacionController extends AppBaseController
      */
     public function store(CreateOperacionRequest $request)
     {
-        $input = $request->all();
+        //$input = $request->all();
+        $input = \request()->all();
+        dd($input);
 
         $operacion = $this->operacionRepository->create($input);
 
