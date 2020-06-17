@@ -8,7 +8,9 @@ use App\Repositories\OperacionRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
+use App\Models\Operacion;
 
 class OperacionController extends AppBaseController
 {
@@ -29,7 +31,16 @@ class OperacionController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $operacions = $this->operacionRepository->all();
+        //$operacions = $this->operacionRepository->all();
+        /*$operacions = Operacion::join('proyecto', 'proyecto.id','=','operaciones.id_proyecto')->select('operaciones*', 'proyecto.nombre')->
+        paginate(31);*/
+        $operacions = DB::table('operaciones')
+            ->join('proyecto', 'operaciones.id_proyecto', '=', 'proyecto.id')
+            ->select('proyecto.id as proyectoid', 'proyecto.nombre as proyectonombre' , 'operaciones.*')
+            ->orderByDesc('created_at')
+            ->paginate(31);
+
+        //dd($operacions);
 
         return view('operacions.index')
             ->with('operacions', $operacions);

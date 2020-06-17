@@ -21,7 +21,7 @@ class Operacion extends Model
     use SoftDeletes;
 
     public $table = 'operaciones';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -33,6 +33,7 @@ class Operacion extends Model
     public $fillable = [
         'id_proyecto',
         'dia',
+        'mes',
         'no_operaciones',
         'ano'
     ];
@@ -46,6 +47,7 @@ class Operacion extends Model
         'id' => 'integer',
         'id_proyecto' => 'integer',
         'dia' => 'integer',
+        'mes' => 'integer',
         'no_operaciones' => 'integer',
         'ano' => 'integer'
     ];
@@ -58,6 +60,7 @@ class Operacion extends Model
     public static $rules = [
         'id_proyecto' => 'required',
         'dia' => 'required',
+        'mes' => 'required',
         'no_operaciones' => 'required',
         'ano' => 'required'
     ];
