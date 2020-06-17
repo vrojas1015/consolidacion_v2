@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class GerenteController extends AppBaseController
 {
@@ -29,7 +30,11 @@ class GerenteController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $gerentes = $this->gerenteRepository->all();
+        //$gerentes = $this->gerenteRepository->all();
+        $gerentes = DB::table('gerentes')
+            ->join('proyecto', 'proyecto.id', '=', 'gerentes.id_proyecto')
+            ->select('gerentes.*', 'proyecto.Nombre as ProyectoNombre')
+            ->paginate(50);
 
         return view('gerentes.index')
             ->with('gerentes', $gerentes);
