@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::resource('gerentes', 'GerenteController');
 
-Route::resource('operacions', 'OperacionController');
+//Route::resource('operacions', 'OperacionController');
 
 Route::resource('proyectos', 'ProyectoController');
 
@@ -45,8 +45,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('conceptos', 'ConceptoController');
 
-Route::resource('grupos', 'GrupoController');
 
 Route::resource('operacionDets', 'OperacionDetController');
 
 Route::resource('operacionHistoricos', 'OperacionHistoricoController');
+
+
+Route::resource('grupos', 'GrupoController');

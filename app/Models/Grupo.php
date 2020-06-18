@@ -7,7 +7,7 @@ use Eloquent as Model;
 /**
  * Class Grupo
  * @package App\Models
- * @version June 18, 2020, 7:49 am UTC
+ * @version June 18, 2020, 8:27 am UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $proyectos
  * @property string $grupo

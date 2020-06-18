@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class GrupoController extends AppBaseController
 {
@@ -58,7 +59,7 @@ class GrupoController extends AppBaseController
 
         $grupo = $this->grupoRepository->create($input);
 
-        Flash::success('Grupo saved successfully.');
+        Flash::success('Grupo añadido satisfactoriamente.');
 
         return redirect(route('grupos.index'));
     }
@@ -92,7 +93,8 @@ class GrupoController extends AppBaseController
      */
     public function edit($id)
     {
-        $grupo = $this->grupoRepository->find($id);
+        $grupo = DB::table('cat_grupos')->select('id_grupos', 'grupo')->Where('id_grupos', '=', $id)->get();
+        //dd($grupo);
 
         if (empty($grupo)) {
             Flash::error('Grupo not found');
@@ -100,7 +102,7 @@ class GrupoController extends AppBaseController
             return redirect(route('grupos.index'));
         }
 
-        return view('grupos.edit')->with('grupo', $grupo);
+        return view('grupos.edit')->with('grupos', $grupo);
     }
 
     /**
@@ -113,7 +115,16 @@ class GrupoController extends AppBaseController
      */
     public function update($id, UpdateGrupoRequest $request)
     {
-        $grupo = $this->grupoRepository->find($id);
+        //$grupo = $this->grupoRepository->find($id);
+        //$input = request()->all();
+        //dd($input);
+        $input = \request()->validate([
+            'grupo' => 'required|string',
+        ]);
+        //dd($input);
+
+        $grupo = DB::table('cat_grupos')->select('id_grupos', 'grupo')->where('id_grupos', '=', $id)->get();
+        //dd($grupo);
 
         if (empty($grupo)) {
             Flash::error('Grupo not found');
@@ -121,9 +132,14 @@ class GrupoController extends AppBaseController
             return redirect(route('grupos.index'));
         }
 
-        $grupo = $this->grupoRepository->update($request->all(), $id);
+        //$grupo = $this->grupoRepository->update($request->all(), $id);
+        if ($input['grupo'] != null) {
+            $up = DB::table('cat_grupos')
+                ->where('id_grupos', '=', $id)
+                ->update(['grupo' => $input['grupo']]);
+        }
 
-        Flash::success('Grupo updated successfully.');
+        Flash::success('Grupo actualizado correctamente.');
 
         return redirect(route('grupos.index'));
     }
@@ -133,13 +149,18 @@ class GrupoController extends AppBaseController
      *
      * @param int $id
      *
+     * @return Response
      * @throws \Exception
      *
-     * @return Response
      */
     public function destroy($id)
     {
-        $grupo = $this->grupoRepository->find($id);
+        //$grupo = $this->grupoRepository->find($id);
+        $grupo = DB::table('cat_grupos')
+            ->where('id_grupos','=', $id)
+            ->first();
+
+        //dd($grupo);
 
         if (empty($grupo)) {
             Flash::error('Grupo not found');
@@ -147,9 +168,11 @@ class GrupoController extends AppBaseController
             return redirect(route('grupos.index'));
         }
 
-        $this->grupoRepository->delete($id);
+        //$this->grupoRepository->delete($id);
+        $sql = DB::table('cat_grupos')->where('id_grupos','=', $id)->delete();
 
-        Flash::success('Grupo deleted successfully.');
+
+        Flash::success('Grupo eliminado satisfactoriamente.');
 
         return redirect(route('grupos.index'));
     }

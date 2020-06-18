@@ -5,19 +5,21 @@
         <h1>
             Grupo
         </h1>
-   </section>
-   <div class="content">
-       @include('adminlte-templates::common.errors')
-       <div class="box box-primary">
-           <div class="box-body">
-               <div class="row">
-                   {!! Form::model($grupo, ['route' => ['grupos.update', $grupo->id], 'method' => 'patch']) !!}
+    </section>
+    <div class="content">
+        @include('adminlte-templates::common.errors')
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    @foreach($grupos as $grupo)
+                        {!! Form::model($grupo, ['route' => ['grupos.update', $grupo->id_grupos], 'method' => 'patch']) !!}
 
                         @include('grupos.fields')
 
-                   {!! Form::close() !!}
-               </div>
-           </div>
-       </div>
-   </div>
+                        {!! Form::close() !!}
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

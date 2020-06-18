@@ -19,11 +19,9 @@ class Concepto extends Model
 {
 
     public $table = 'cat_conceptos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
-
 
 
     public $fillable = [
@@ -52,7 +50,7 @@ class Concepto extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**
