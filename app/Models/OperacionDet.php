@@ -20,7 +20,7 @@ class OperacionDet extends Model
 {
 
     public $table = 'OperacionesDet';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -46,7 +46,6 @@ class OperacionDet extends Model
         'no_operaciones' => 'integer',
         'id_proyecto' => 'integer',
         'estatus' => 'string',
-        'id_concepto' => 'integer'
     ];
 
     /**
@@ -55,7 +54,7 @@ class OperacionDet extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**

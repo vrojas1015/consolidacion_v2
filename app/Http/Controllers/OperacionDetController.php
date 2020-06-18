@@ -8,6 +8,7 @@ use App\Repositories\OperacionDetRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class OperacionDetController extends AppBaseController
@@ -42,7 +43,8 @@ class OperacionDetController extends AppBaseController
      */
     public function create()
     {
-        return view('operacion_dets.create');
+        $proyecto = DB::table('proyecto')->select('id', 'no_proyecto', 'Nombre')->get();
+        return view('operacion_dets.create')->with('proyectos', $proyecto);
     }
 
     /**
@@ -55,10 +57,11 @@ class OperacionDetController extends AppBaseController
     public function store(CreateOperacionDetRequest $request)
     {
         $input = $request->all();
+        //dd($input);
 
         $operacionDet = $this->operacionDetRepository->create($input);
 
-        Flash::success('Operacion Det saved successfully.');
+        Flash::success('Operacion cargada exitosamente.');
 
         return redirect(route('operacionDets.index'));
     }
@@ -93,6 +96,7 @@ class OperacionDetController extends AppBaseController
     public function edit($id)
     {
         $operacionDet = $this->operacionDetRepository->find($id);
+        $proyecto = DB::table('proyecto')->select('id', 'no_proyecto', 'Nombre')->get();
 
         if (empty($operacionDet)) {
             Flash::error('Operacion Det not found');
@@ -100,7 +104,7 @@ class OperacionDetController extends AppBaseController
             return redirect(route('operacionDets.index'));
         }
 
-        return view('operacion_dets.edit')->with('operacionDet', $operacionDet);
+        return view('operacion_dets.edit')->with('operacionDet', $operacionDet)->with('proyectos', $proyecto);
     }
 
     /**
@@ -123,7 +127,7 @@ class OperacionDetController extends AppBaseController
 
         $operacionDet = $this->operacionDetRepository->update($request->all(), $id);
 
-        Flash::success('Operacion Det updated successfully.');
+        Flash::success('Operacion actualizada correctamente.');
 
         return redirect(route('operacionDets.index'));
     }
@@ -149,7 +153,7 @@ class OperacionDetController extends AppBaseController
 
         $this->operacionDetRepository->delete($id);
 
-        Flash::success('Operacion Det deleted successfully.');
+        Flash::success('Operacion eliminada exitosamente.');
 
         return redirect(route('operacionDets.index'));
     }
