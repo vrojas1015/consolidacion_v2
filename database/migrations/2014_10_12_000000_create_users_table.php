@@ -21,24 +21,30 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
 
-        Schema::create('region',function (Blueprint $table){
+        Schema::create('regiones',function (Blueprint $table){
             $table->id();
             $table->string('nombre');
             $table->string('identificador');
             $table->timestamps();
-            $table->softDeletes();
+        });
+
+        Schema::create('cat_grupos',function (Blueprint $table){
+            $table->id('id_grupos');
+            $table->string('grupo');
+            $table->timestamps();
         });
 
         Schema::create('proyecto',function (Blueprint $table){
             $table->id();
+            $table->integer('no_proyecto');
+            $table->string('Nombre');
             $table->unsignedBigInteger('id_region');
-            $table->foreign('id_region')->references('id')->on('region')->onDelete('cascade');
-            $table->string('nombre');
+            $table->foreign('id_region')->references('id')->on('regiones')->onDelete('cascade');
+            $table->unsignedBigInteger('id_grupo');
+            $table->foreign('id_grupo')->references('id_grupos')->on('cat_grupos')->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create('gerentes', function (Blueprint $table){
@@ -49,19 +55,19 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
-            $table->softDeletes();
         });
 
-        Schema::create('operaciones', function(Blueprint $table){
+        Schema::create('OperacionesDet', function (Blueprint $table){
             $table->id();
+            $table->timestamp('fecha');
+            $table->integer('no_operaciones');
             $table->unsignedBigInteger('id_proyecto');
             $table->foreign('id_proyecto')->references('id')->on('proyecto')->onDelete('cascade');
-            $table->integer('dia');
-            $table->integer('no_operaciones');
-            $table->integer('ano');
             $table->timestamps();
-            $table->softDeletes();
+            $table->char('estatus');
+            $table->bigInteger('id_concepto');
         });
+
     }
 
     /**
@@ -72,9 +78,10 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('operaciones');
+        Schema::dropIfExists('regiones');
+        Schema::dropIfExists('cat_grupos');
+        Schema::dropIfExists('proyecto');
         Schema::dropIfExists('gerentes');
-        Schema::dropIfExists('proyecto');   
-        Schema::dropIfExists('region');
+        Schema::dropIfExists('OperacionesDet');
     }
 }
