@@ -41,3 +41,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::resource('conceptos', 'ConceptoController');
+
+Route::resource('grupos', 'GrupoController');
+
+Route::resource('operacionDets', 'OperacionDetController');
+
+Route::resource('operacionHistoricos', 'OperacionHistoricoController');

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class ProyectoRepository
  * @package App\Repositories
- * @version June 10, 2020, 8:40 pm UTC
+ * @version June 18, 2020, 7:56 am UTC
 */
 
 class ProyectoRepository extends BaseRepository
@@ -17,8 +17,10 @@ class ProyectoRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'no_proyecto',
+        'Nombre',
         'id_region',
-        'nombre'
+        'id_grupo'
     ];
 
     /**

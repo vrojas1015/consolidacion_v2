@@ -58,7 +58,7 @@ class RegionController extends AppBaseController
 
         $region = $this->regionRepository->create($input);
 
-        Flash::success('Region añadida satisfactoriamente.');
+        Flash::success('Region saved successfully.');
 
         return redirect(route('regions.index'));
     }
@@ -123,7 +123,7 @@ class RegionController extends AppBaseController
 
         $region = $this->regionRepository->update($request->all(), $id);
 
-        Flash::success('Region actualizada satisfactoriamente.');
+        Flash::success('Region updated successfully.');
 
         return redirect(route('regions.index'));
     }

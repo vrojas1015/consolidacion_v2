@@ -8,7 +8,6 @@ use App\Repositories\ProyectoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
-use Illuminate\Support\Facades\DB;
 use Response;
 
 class ProyectoController extends AppBaseController
@@ -30,11 +29,7 @@ class ProyectoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        //$proyectos = $this->proyectoRepository->all();
-        $proyectos = DB::table('proyecto')
-            ->join('region', 'region.id', '=', 'proyecto.id_region')
-            ->select('proyecto.*', 'region.Nombre as RegionNombre', 'region.identificador')
-            ->paginate(50);
+        $proyectos = $this->proyectoRepository->all();
 
         return view('proyectos.index')
             ->with('proyectos', $proyectos);
@@ -47,8 +42,7 @@ class ProyectoController extends AppBaseController
      */
     public function create()
     {
-        $region = DB::table('region')->select('id', 'Nombre', 'identificador')->get();
-        return view('proyectos.create')->with('regiones', $region);
+        return view('proyectos.create');
     }
 
     /**
@@ -98,14 +92,7 @@ class ProyectoController extends AppBaseController
      */
     public function edit($id)
     {
-        //$proyecto = $this->proyectoRepository->find($id);
-
-        $proyecto = DB::table('proyecto')
-            ->join('region', 'region.id', '=', 'proyecto.id_region')
-            ->select('proyecto.*', 'region.id as RegionId' ,'region.Nombre as RegionNombre', 'region.identificador')
-            ->where('proyecto.id', '=', $id)
-            ->get();
-        $region = DB::table('region')->select('id', 'Nombre', 'identificador')->get();
+        $proyecto = $this->proyectoRepository->find($id);
 
         if (empty($proyecto)) {
             Flash::error('Proyecto not found');
@@ -113,7 +100,7 @@ class ProyectoController extends AppBaseController
             return redirect(route('proyectos.index'));
         }
 
-        return view('proyectos.edit')->with('proyectos', $proyecto)->with('regiones', $region);
+        return view('proyectos.edit')->with('proyecto', $proyecto);
     }
 
     /**
@@ -136,7 +123,7 @@ class ProyectoController extends AppBaseController
 
         $proyecto = $this->proyectoRepository->update($request->all(), $id);
 
-        Flash::success('Proyecto actualizado satisfactoriamente.');
+        Flash::success('Proyecto updated successfully.');
 
         return redirect(route('proyectos.index'));
     }
@@ -152,12 +139,7 @@ class ProyectoController extends AppBaseController
      */
     public function destroy($id)
     {
-        //$proyecto = $this->proyectoRepository->find($id);
-        $proyecto = DB::table('proyecto')
-            ->where('id', '=', $id)
-            ->first();
-
-        //dd($proyecto);
+        $proyecto = $this->proyectoRepository->find($id);
 
         if (empty($proyecto)) {
             Flash::error('Proyecto not found');
@@ -165,10 +147,9 @@ class ProyectoController extends AppBaseController
             return redirect(route('proyectos.index'));
         }
 
-        //$this->proyectoRepository->delete($id);
-        $sql = DB::table('proyecto')->where('id','=',$id)->delete();
+        $this->proyectoRepository->delete($id);
 
-        Flash::success('Proyecto eliminado satisfactoriamente.');
+        Flash::success('Proyecto deleted successfully.');
 
         return redirect(route('proyectos.index'));
     }

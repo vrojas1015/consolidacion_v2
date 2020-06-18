@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Region
  * @package App\Models
- * @version June 10, 2020, 8:40 pm UTC
+ * @version June 18, 2020, 7:55 am UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $proyectos
  * @property string $nombre
@@ -16,15 +15,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Region extends Model
 {
-    use SoftDeletes;
 
-    public $table = 'region';
+    public $table = 'regiones';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
-    protected $dates = ['deleted_at'];
 
 
 
@@ -50,8 +46,7 @@ class Region extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required',
-        'identificador' => 'required'
+        
     ];
 
     /**

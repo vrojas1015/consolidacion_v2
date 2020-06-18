@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "bigInteger,true,true",
+        "dbType": "bigInteger,false",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -13,9 +13,9 @@
     },
     {
         "name": "nombre",
-        "dbType": "string,255",
+        "dbType": "string,255:nullable",
         "htmlType": "text",
-        "validations": "required",
+        "validations": null,
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -25,9 +25,9 @@
     },
     {
         "name": "identificador",
-        "dbType": "string,255",
+        "dbType": "string,255:nullable",
         "htmlType": "text",
-        "validations": "required",
+        "validations": null,
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -49,18 +49,6 @@
     },
     {
         "name": "updated_at",
-        "dbType": "datetime:nullable",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false,
-        "inView": false
-    },
-    {
-        "name": "deleted_at",
         "dbType": "datetime:nullable",
         "htmlType": "date",
         "validations": null,

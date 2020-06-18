@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "bigInteger,true,true",
+        "dbType": "bigInteger,false",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -12,10 +12,10 @@
         "inView": false
     },
     {
-        "name": "id_region",
-        "dbType": "bigInteger,false,true",
+        "name": "no_proyecto",
+        "dbType": "integer,false",
         "htmlType": null,
-        "validations": "required",
+        "validations": null,
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -24,10 +24,22 @@
         "inView": true
     },
     {
-        "name": "nombre",
-        "dbType": "string,255",
+        "name": "Nombre",
+        "dbType": "string,45:nullable",
         "htmlType": "text",
-        "validations": "required",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "id_region",
+        "dbType": "bigInteger,false",
+        "htmlType": null,
+        "validations": null,
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -60,27 +72,31 @@
         "inView": false
     },
     {
-        "name": "deleted_at",
-        "dbType": "datetime:nullable",
-        "htmlType": "date",
+        "name": "id_grupo",
+        "dbType": "bigInteger,false",
+        "htmlType": null,
         "validations": null,
-        "searchable": false,
-        "fillable": false,
+        "searchable": true,
+        "fillable": true,
         "primary": false,
-        "inForm": false,
-        "inIndex": false,
-        "inView": false
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
     },
     {
         "type": "relation",
-        "relation": "mt1,Region,id_region"
+        "relation": "mt1,CatGrupo,id_grupo"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Regione,id_region"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,OperacionesDet,id_proyecto"
     },
     {
         "type": "relation",
         "relation": "1tm,Gerente,id_proyecto"
-    },
-    {
-        "type": "relation",
-        "relation": "1tm,Operacione,id_proyecto"
     }
 ]
