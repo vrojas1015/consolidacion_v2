@@ -1,3 +1,7 @@
+<li class="{{ Request::is('home*') ? 'active' : '' }}">
+    <a href="{{ route('home') }}"><i class="fa fa-edit"></i><span>Desglose</span></a>
+</li>
+
 <li class="{{ Request::is('gerentes*') ? 'active' : '' }}">
     <a href="{{ route('gerentes.index') }}"><i class="fa fa-edit"></i><span>Gerentes</span></a>
 </li>
