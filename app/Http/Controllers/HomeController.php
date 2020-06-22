@@ -56,7 +56,8 @@ class HomeController extends Controller
         return view('home')->with('sqls', $result)->with('desgloses', $result1);
     }
 
-    public function enviarEmail(){
+    public function enviarEmail()
+    {
         //dd("Enviar email");
         $sql = "select pr . no_proyecto as numero_proyecto, pr . Nombre as nombre_proyecto,
         grt . email as correo
@@ -92,7 +93,8 @@ class HomeController extends Controller
             $mail->IsHTML(true);
             $mail->Send();
 
-            Flash::success('Correos enviado satisfactoriamente.');
+            Flash::success('Correos enviados satisfactoriamente.<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>');
             return redirect(route('home'));
 
         }

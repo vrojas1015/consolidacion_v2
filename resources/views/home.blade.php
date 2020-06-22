@@ -9,7 +9,8 @@
                     <strong>¡Algunos gerentes no han cargado su informacion!</strong>
                     <ul>
                         @foreach($sqls as $sql)
-                            <li>Proyecto: {!! $sql->numero_proyecto !!} / {!! $sql->nombre_proyecto !!} - {!! $sql->correo !!}</li>
+                            <li>Proyecto: {!! $sql->numero_proyecto !!} / {!! $sql->nombre_proyecto !!}
+                                - {!! $sql->correo !!}</li>
                         @endforeach
                     </ul>
                     <hr>
@@ -51,9 +52,9 @@
                         <tbody>
                         <tr>
                             @foreach($desgloses as $desglose)
-                            <td>{!! $desglose->porcentaje !!}</td>
-                            <td>{!! $desglose->variacion !!}</td>
-                            <td>{!! $desglose->grupo !!}</td>
+                                <td>{!! $desglose->porcentaje !!}</td>
+                                <td>{!! $desglose->variacion !!}</td>
+                                <td>{!! $desglose->grupo !!}</td>
                             @endforeach
                         </tr>
                         </tbody>
@@ -67,6 +68,6 @@
 
 <script>
     @push('scripts')
-
-@endpush
-    </script>
+    //$('div.alert').not('.alert-important').delay(7000).fadeOut(1000);
+    @endpush
+</script>
