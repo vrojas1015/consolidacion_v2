@@ -9,11 +9,13 @@
                     <strong>¡Algunos gerentes no han cargado su informacion!</strong>
                     <ul>
                         @foreach($sqls as $sql)
-                            <li>Proyecto: {!! $sql->numero_proyecto !!} - {!! $sql->nombre_proyecto !!}</li>
+                            <li>Proyecto: {!! $sql->numero_proyecto !!} / {!! $sql->nombre_proyecto !!} - {!! $sql->correo !!}</li>
                         @endforeach
                     </ul>
-                    <span>Solicitar informacion: </span>
-                    <button type="button" id="btn-one" class="btn btn-primary">Solicitar</button>
+                    <hr>
+                    {!! Form::open(['route' => 'email']) !!}
+                    {!! Form::submit('Solicita a los gerentes la carga de informacion', ['class' => 'btn btn-primary', 'id' => 'Solicitar']) !!}
+                    {!! Form::close() !!}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -38,13 +40,24 @@
         <div class="text-center">
             <div class="row">
                 <div class="col-sm">
-                    one
-                </div>
-                <div class="col-sm">
-                    One of three columns
-                </div>
-                <div class="col-sm">
-                    One of three columns
+                    <table class="table table-hover text-center">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">% Porcentaje</th>
+                            <th scope="col">Variacion</th>
+                            <th scope="col">Grupo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            @foreach($desgloses as $desglose)
+                            <td>{!! $desglose->porcentaje !!}</td>
+                            <td>{!! $desglose->variacion !!}</td>
+                            <td>{!! $desglose->grupo !!}</td>
+                            @endforeach
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -54,6 +67,6 @@
 
 <script>
     @push('scripts')
-    
+
 @endpush
     </script>
