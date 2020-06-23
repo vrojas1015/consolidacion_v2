@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Gerente extends Authenticatable
 {
     use Notifiable;
-    use SoftDeletes;
+    //use SoftDeletes;
 
     public $table = 'gerentes';
     

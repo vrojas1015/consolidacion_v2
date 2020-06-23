@@ -43,7 +43,7 @@ return [
 
         'gerente' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'gerentes',
         ],
 
         'api' => [
