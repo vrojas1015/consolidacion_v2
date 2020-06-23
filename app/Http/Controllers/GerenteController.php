@@ -212,4 +212,9 @@ class GerenteController extends AppBaseController
 
         return redirect(route('gerentes.index'));
     }
+
+    public function indexGerente()
+    {
+        return view('home_gerente');
+    }
 }

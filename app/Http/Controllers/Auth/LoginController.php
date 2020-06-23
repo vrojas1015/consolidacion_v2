@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -41,7 +41,7 @@ class LoginController extends Controller
         $this->middleware('guest:gerente')->except('logout');
     }
 
-    public function authenticateG(Request $request)
+    public function authenticateG()
     {
         $credentials =  request()->validate([
             'email'   => 'required|email',
@@ -50,19 +50,21 @@ class LoginController extends Controller
         //dd($credentials['email']);
         if(Auth::guard('gerente')->attempt(['email' => $credentials['email'], 'password' => $credentials['password']])){
             //dd(Auth::guard('gerente')->user());
-            return redirect()->intended('/home');
+            return redirect(route('h_gerente'));
         }
         //auth()->guard('gerente')->attempt($credentials);
-        dd(Auth::check());
         // Authentication passed...
-        return redirect(url('/login_g'));
+        return redirect( route('login_g'));
+    }
 
-
+    public function showLoginFormG()
+    {
+        return view('auth_gerente.login');
     }
 
     public function showLoginForm()
     {
-        return view('auth_gerente.login');
+        return view('auth.login');
     }
 
 }
