@@ -49,7 +49,7 @@ class LoginController extends Controller
         ]);
         //dd($credentials['email']);
         if(Auth::guard('gerente')->attempt(['email' => $credentials['email'], 'password' => $credentials['password']])){
-            dd(Auth::guard('gerente')->guest());
+            //dd(Auth::guard('gerente')->);
             return redirect()->intended('/home');
         }
         //auth()->guard('gerente')->attempt($credentials);
