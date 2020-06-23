@@ -17,10 +17,10 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::get('/login_gerente', 'Auth\LoginController@showLoginFormG');
 Route::post('/login_g','Auth\LoginController@authenticateG')->name('login_g');
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
 //Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth:web'], function () {
-
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/email', 'HomeController@enviarEmail')->name('email');
     Route::resource('gerentes', 'GerenteController');
     Route::resource('desglose', 'DesgloseController');
