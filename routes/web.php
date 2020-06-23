@@ -26,6 +26,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->middleware('verified');
 Route::post('/email', 'HomeController@enviarEmail')->name('email');
 Route::resource('gerentes', 'GerenteController');
+Route::resource('desglose', 'DesgloseController');
 
 //Route::resource('operacions', 'OperacionController');
 

@@ -36,20 +36,19 @@ class HomeController extends Controller
         $result = DB::SELECT($sql);
 
 
-        $desglose = "select (sum(no_operaciones) - (select sum(no_operaciones) from Operaciones_Det_Historico pdh,
-        cat_grupos gr, proyecto pr
-        where pdh.id_proyecto = pr.id and pr.id_grupo = cg.id_grupos and month(fecha) = '06' and year(fecha) = '2019' and cg.grupo = cg.grupo)) /
-        (select sum(no_operaciones) from Operaciones_Det_Historico
-        where month(fecha) = '06' and year (fecha) = '2019') * 100 as porcentaje,
-        sum(no_operaciones) - (select sum(no_operaciones) from Operaciones_Det_Historico
-        where month(fecha) = '06' and year(fecha) = '2019') as variacion,
-        cg.grupo  as grupo
-        from OperacionesDet opd, proyecto pr, cat_grupos cg
-        where opd.id_proyecto = pr.id and pr.id_grupo = cg.id_grupos
-        and  month (fecha) = '06' and year (fecha) = '2020'
-        #and cg.grupo = ''";
+        $desglose = "select  sum(no_operaciones) \"operacionesactuales\",
+        (select sum(no_operaciones) from Operaciones_Det_Historico pdh, cat_grupos gr, proyecto pr
+       where pdh.id_proyecto = pr.id and pr.id_grupo = cg.id_grupos and month(fecha) = '06' and year(fecha) = '2019' and cg.grupo = cg.grupo) \"operacioneshistorico\",
+        (sum(no_operaciones) - (select sum(no_operaciones) from Operaciones_Det_Historico pdh, cat_grupos gr, proyecto pr
+       where pdh.id_proyecto = pr.id and pr.id_grupo = cg.id_grupos and month(fecha) = '06' and year(fecha) = '2019' and cg.grupo = cg.grupo)) /
+       (select sum(no_operaciones) from Operaciones_Det_Historico
+       where month(fecha) = '06' and year (fecha) = '2019') * 100 \"porcentaje\",
+       sum(no_operaciones) - (select sum(no_operaciones) from Operaciones_Det_Historico
+       where month(fecha) = '06' and year(fecha) = '2019') as \"variacion\", pr.nombre \"proyecto\", cg.grupo  \"grupo\"
+       from OperacionesDet opd, proyecto pr, cat_grupos cg
+        where opd.id_proyecto = pr.id and pr.id_grupo = cg.id_grupos and  month (fecha) = '06' and year (fecha) = '2020' #and cg.grupo = ''";
         $result1 = DB::SELECT($desglose);
-        //dd($result1);
+       // dd($result1);
 
         //$desglose = DB::table('')
 

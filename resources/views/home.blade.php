@@ -23,7 +23,8 @@
                 </div>
             @else
                 <div class="alert alert-success alert-dismissible fade show" role="alert" id="informacion">
-                    <strong>¡Todo bien!</strong> Parece que todos tus gerentes han cargado su informacion.
+                    <strong><i class="fa fa-check" aria-hidden="true"></i>
+                    </strong> Parece que todos tus gerentes han cargado su informacion.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -44,6 +45,7 @@
                     <table class="table table-hover text-center">
                         <thead class="thead-dark">
                         <tr>
+                            <th scope="col">Operaciones actuales</th>
                             <th scope="col">% Porcentaje</th>
                             <th scope="col">Variacion</th>
                             <th scope="col">Grupo</th>
@@ -52,6 +54,7 @@
                         <tbody>
                         <tr>
                             @foreach($desgloses as $desglose)
+                                <td>{!! $desglose->operacionesactuales !!}</td>
                                 <td>{!! $desglose->porcentaje !!}</td>
                                 <td>{!! $desglose->variacion !!}</td>
                                 <td>{!! $desglose->grupo !!}</td>
@@ -61,8 +64,11 @@
                     </table>
                 </div>
             </div>
-
         </div>
+        <a type="button" class="btn btn-info float-md-left" href="{{ route('desglose.index') }}">Buscador <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+        <!--<button type="button" class="btn btn-success float-md-right"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+              Descargar reporte</button>-->
     </div>
 @endsection
 
