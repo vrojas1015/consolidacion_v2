@@ -46,8 +46,10 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">Operaciones actuales</th>
-                            <th scope="col">% Porcentaje</th>
+                            <th scope="col">Operaciones 2019</th>
                             <th scope="col">Variacion</th>
+                            <th scope="col">% Porcentaje</th>
+                            <th scope="col">Boleto</th>
                             <th scope="col">Grupo</th>
                         </tr>
                         </thead>
@@ -55,8 +57,10 @@
                         <tr>
                             @foreach($desgloses as $desglose)
                                 <td>{!! $desglose->operacionesactuales !!}</td>
-                                <td>{!! $desglose->porcentaje !!}</td>
+                                <td>{!! $desglose->operacioneshistorico !!}</td>
                                 <td>{!! $desglose->variacion !!}</td>
+                                <td>{!! $desglose->porcentaje !!}</td>
+                                <td>{!! $desglose->tickets !!}</td>
                                 <td>{!! $desglose->grupo !!}</td>
                             @endforeach
                         </tr>
@@ -65,15 +69,15 @@
                 </div>
             </div>
         </div>
-        <a type="button" class="btn btn-info float-md-left" href="{{ route('desglose.index') }}">Buscador <i class="fa fa-search" aria-hidden="true"></i>
+        <a type="button" class="btn btn-info float-md-left" href="{{ route('desglose.index') }}">Buscador <i
+                class="fa fa-search" aria-hidden="true"></i>
         </a>
-        <!--<button type="button" class="btn btn-success float-md-right"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
-              Descargar reporte</button>-->
+        <button type="button" class="btn btn-success float-md-right"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+              Descargar reporte</button>
     </div>
 @endsection
 
 <script>
     @push('scripts')
-    //$('div.alert').not('.alert-important').delay(7000).fadeOut(1000);
     @endpush
 </script>

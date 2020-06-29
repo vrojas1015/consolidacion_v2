@@ -26,6 +26,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Operaciones actuales</th>
+                                <th scope="col">Operaciones 2019</th>
                                 <th scope="col">% Porcentaje</th>
                                 <th scope="col">Variacion</th>
                                 <th scope="col">Grupo</th>
@@ -36,6 +37,7 @@
                                 @foreach($resultados as $desglose)
                                         @if($desglose->operacionesactuales != NULL || $desglose->porcentaje != NULL || $desglose->variacion != NULL || $desglose->grupo != NULL)
                                         <td>{!! $desglose->operacionesactuales !!}</td>
+                                        <td>{!! $desglose->operacioneshistorico !!}</td>
                                         <td>{!! $desglose->porcentaje !!}</td>
                                         <td>{!! $desglose->variacion !!}</td>
                                         <td>{!! $desglose->grupo !!}</td>
