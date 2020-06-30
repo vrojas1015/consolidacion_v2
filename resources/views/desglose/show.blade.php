@@ -29,6 +29,7 @@
                                 <th scope="col">Operaciones 2019</th>
                                 <th scope="col">% Porcentaje</th>
                                 <th scope="col">Variacion</th>
+                                <th scope="col">Boleto</th>
                                 <th scope="col">Grupo</th>
                             </tr>
                             </thead>
@@ -40,6 +41,7 @@
                                         <td>{!! $desglose->operacioneshistorico !!}</td>
                                         <td>{!! $desglose->porcentaje !!}</td>
                                         <td>{!! $desglose->variacion !!}</td>
+                                        <td>{!! $desglose->tickets !!}</td>
                                         <td>{!! $desglose->grupo !!}</td>
                                         @else
                                         <td colspan="4"><h4>Sin resultados</h4></td>

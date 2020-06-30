@@ -32,6 +32,7 @@ class OperacionDet extends Model
         'no_operaciones',
         'id_proyecto',
         'estatus',
+        'tickets',
         'id_concepto'
     ];
 

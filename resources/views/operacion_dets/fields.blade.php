@@ -30,6 +30,12 @@
     </select>
 </div>
 
+<!-- No Operaciones Field -->
+<div class="form-group col-sm-12">
+    {!! Form::label('tickets', 'Boletos:') !!}
+    {!! Form::number('tickets', null, ['class' => 'form-control']) !!}
+</div>
+
     {!! Form::hidden('estatus', 1, ['class' => 'form-control']) !!}
 
 <!-- Id Concepto Field -->

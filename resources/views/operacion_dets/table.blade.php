@@ -7,6 +7,7 @@
             <th>Proyecto</th>
             <!--th>Estatus</th>-->
             <!--<th>Id Concepto</th>-->
+            <th>Boleto</th>
             <th colspan="3">Accion</th>
         </tr>
         </thead>
@@ -18,6 +19,7 @@
                 <td>{{ $operacionDet->id_proyecto }}</td>
                 <!--td>{{ $operacionDet->estatus }}</td>-->
                 <!--<td>{{ $operacionDet->id_concepto }}</td>-->
+                <td>{{ $operacionDet->tickets }}</td>
                 <td>
                     {!! Form::open(['route' => ['operacionDets.destroy', $operacionDet->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
