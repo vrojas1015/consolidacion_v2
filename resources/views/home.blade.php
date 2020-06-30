@@ -72,8 +72,8 @@
         <a type="button" class="btn btn-info float-md-left" href="{{ route('desglose.index') }}">Buscador <i
                 class="fa fa-search" aria-hidden="true"></i>
         </a>
-        <a type="button" class="btn btn-success float-md-right" href="{{url('reporte')}}"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
-              Descargar reporte</a>
+        <!--<a type="button" class="btn btn-success float-md-right" href="{{url('reporte')}}"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+              Descargar reporte</a>-->
     </div>
 @endsection
 
