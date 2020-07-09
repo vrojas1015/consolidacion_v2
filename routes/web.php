@@ -42,3 +42,8 @@ Route::group(['middleware' => 'auth:gerente'], function () {
 //Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+
+Route::resource('clientes', 'ClienteController');
+
+Route::resource('promesas', 'PromesaController');
