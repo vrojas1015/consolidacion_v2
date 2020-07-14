@@ -58,7 +58,7 @@ class ClienteController extends AppBaseController
 
         $cliente = $this->clienteRepository->create($input);
 
-        Flash::success('Cliente saved successfully.');
+        Flash::success('Cliente añadido.');
 
         return redirect(route('clientes.index'));
     }
@@ -123,7 +123,7 @@ class ClienteController extends AppBaseController
 
         $cliente = $this->clienteRepository->update($request->all(), $id);
 
-        Flash::success('Cliente updated successfully.');
+        Flash::success('Cliente actualizado satisfactoriamente.');
 
         return redirect(route('clientes.index'));
     }
@@ -149,7 +149,7 @@ class ClienteController extends AppBaseController
 
         $this->clienteRepository->delete($id);
 
-        Flash::success('Cliente deleted successfully.');
+        Flash::success('Cliente eliminado satisfactoriamente.');
 
         return redirect(route('clientes.index'));
     }

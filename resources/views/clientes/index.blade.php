@@ -4,12 +4,13 @@
     <section class="content-header">
         <h1 class="pull-left">Clientes</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('clientes.create') }}">Add New</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('clientes.create') }}">Añadir nuevo</a>
         </h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>
 
+        @include('layouts.errors')
         @include('flash::message')
 
         <div class="clearfix"></div>
@@ -19,7 +20,7 @@
             </div>
         </div>
         <div class="text-center">
-        
+
         </div>
     </div>
 @endsection
