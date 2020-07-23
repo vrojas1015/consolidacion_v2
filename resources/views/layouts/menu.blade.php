@@ -38,12 +38,13 @@
 <li class="{{ Request::is('grupos*') ? 'active' : '' }}">
     <a href="{{ route('grupos.index') }}"><i class="fa fa-edit"></i><span>Grupos</span></a>
 </li>
-
+<!--
 <li class="{{ Request::is('clientes*') ? 'active' : '' }}">
     <a href="{{ route('clientes.index') }}"><i class="fa fa-edit"></i><span>Clientes</span></a>
 </li>
-
+-->
+<!--
 <li class="{{ Request::is('promesas*') ? 'active' : '' }}">
     <a href="{{ route('promesas.index') }}"><i class="fa fa-edit"></i><span>Promesas</span></a>
 </li>
-
+-->

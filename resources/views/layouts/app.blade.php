@@ -99,13 +99,13 @@
                     <div class="navbar-header">
 
                         <!-- Collapsed Hamburger -->
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                 data-target="#app-navbar-collapse">
                             <span class="sr-only">Toggle Navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-                        </button>
+                        </button>-->
 
                         <!-- Branding Image -->
                         <a class="navbar-brand" href="{{ url('/') }}">
@@ -113,19 +113,19 @@
                         </a>
                     </div>
 
-                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                        <!-- Left Side Of Navbar -->
+                    <!--<div class="collapse navbar-collapse" id="app-navbar-collapse">
+
                         <ul class="nav navbar-nav">
                             <li><a href="{{ url('/home') }}">Home</a></li>
                         </ul>
 
-                        <!-- Right Side Of Navbar -->
+
                         <ul class="nav navbar-nav navbar-right">
-                            <!-- Authentication Links -->
+
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
             </nav>
 
