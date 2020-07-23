@@ -86,8 +86,8 @@ class HomeController extends Controller
             $mail->Port = 587;
             $mail->SMTPSecure = 'tls';
             $mail->SMTPAuth = true;
-            $mail->Username = "facturacion-oce@central-mx.com";
-            $mail->Password = "1t3gr4d0r2020*";
+            $mail->Username = "notificacionportal@central-mx.com";
+            $mail->Password = "C3ntr4l_2020";
             $mail->setFrom('facturacion-oce@central-mx.com', 'Operadora central de estacionamientos');
             //$mail->From = "no - reply@central - mx . com";
             //$mail->FromName = "Central operadora de estacionamientos";

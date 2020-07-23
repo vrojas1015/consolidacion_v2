@@ -13,23 +13,23 @@
     @yield('css')
 </head>
 
-<body class="skin-blue sidebar-mini">
+<body class="skin-black sidebar-mini">
 <div id="mdb-preloader" class="flex-center">
     <div id="preloader-markup">
         @if (!Auth::guest())
             <div class="wrapper">
                 <!-- Main Header -->
-                <header class="main-header">
+                <header class="main-header" style="background-color: black;">
 
                     <!-- Logo -->
-                    <a class="logo">
+                    <a class="logo" style="background-color: black;">
                         <img src="{{asset('logo/logo/login-logo.png')}}" style="width: 40px;">
                     </a>
 
                     <!-- Header Navbar -->
-                    <nav class="navbar navbar-static-top" role="navigation">
+                    <nav class="navbar navbar-static-top" role="navigation" style="background-color: black;">
                         <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <a href="#" style="color: white;" class="sidebar-toggle" data-toggle="push-menu" role="button">
                             <span class="sr-only">Toggle navigation</span>
                         </a>
                         <!-- Navbar Right Menu -->
@@ -88,7 +88,7 @@
 
                 <!-- Main Footer -->
                 <footer class="main-footer" style="max-height: 100px;text-align: center">
-                    <strong>Creado por: © {{date('Y')}} <a href="http://integrador-technology.mx" target="_blank">Integrador Technology</a>.</strong> All rights reserved.
+                    <strong>Creado por: © {{date('Y')}} <a href="http://integrador-technology.mx" target="_blank">Operadora Central de Estacionamientos</a>.</strong> All rights reserved.
                 </footer>
 
             </div>
