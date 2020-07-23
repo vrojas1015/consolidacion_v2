@@ -1,34 +1,25 @@
 @extends('layouts.gerentes')
 
 @section('content')
-
     <section class="content-header">
-        <div class="pull-center">
-            <h1>Gerentes</h1>
-        </div>
+        <h1 class="pull-left">Operaciones</h1>
+        <h1 class="pull-right">
+            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('carga_gerente') }}">Añadir nuevo</a>
+        </h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>
 
-        @include('layouts.errors')
         @include('flash::message')
 
         <div class="clearfix"></div>
-        <div class="text-center">
-            <div class="row">
-                <div class="col-sm">
-                </div>
+        <div class="box box-primary">
+            <div class="box-body">
+                @include('operacion_dets.gerentesoperaciontable')
             </div>
         </div>
-        <a type="button" class="btn btn-info float-md-left" href="{{ route('desglose.index') }}">Buscador <i class="fa fa-search" aria-hidden="true"></i>
-        </a>
-        <!--<button type="button" class="btn btn-success float-md-right"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
-              Descargar reporte</button>-->
+        <div class="text-center">
+
+        </div>
     </div>
 @endsection
-
-<script>
-    @push('scripts')
-    //$('div.alert').not('.alert-important').delay(7000).fadeOut(1000);
-    @endpush
-</script>

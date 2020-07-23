@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateGerenteRequest;
 use App\Http\Requests\UpdateGerenteRequest;
+use App\Models\OperacionDet;
 use App\Repositories\GerenteRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -215,6 +216,38 @@ class GerenteController extends AppBaseController
 
     public function indexGerente()
     {
-        return view('home_gerente');
+        //dd(Auth::user()->id_proyecto);
+        $est = Auth::user()->id_proyecto;
+        $proyecto = DB::table('OperacionesDet')->where('id_proyecto', '=', $est)->orderBy('fecha', 'desc')->paginate(60);
+        //dd($proyecto);
+        return view('home_gerente')->with('proyectos', $proyecto);
+    }
+
+    public function createGerente()
+    {
+        //dd(Auth::user()->id_proyecto);
+        $est = Auth::user()->id_proyecto;
+        //dd($proyecto);
+        return view('operacion_dets.gerentesoperacioncreate')->with('ests', $est);
+    }
+
+    public function storeGerente()
+    {
+        $input = \request()->all();
+        //dd($input);
+
+        $flight = new OperacionDet();
+
+        $flight->fecha = $input['fecha'];
+        $flight->no_operaciones = $input['no_operaciones'];
+        $flight->id_proyecto = $input['id_proyecto'];
+        $flight->tickets = $input['tickets'];
+        $flight->estatus = $input['estatus'];
+        $flight->save();
+
+        Flash::success('Operacion cargada exitosamente.');
+
+        return redirect(route('h_gerente'));
+
     }
 }
