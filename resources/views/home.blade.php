@@ -69,12 +69,34 @@
                 </div>
             </div>
         </div>
+
         <a type="button" class="btn btn-info float-md-left" href="{{ route('desglose.index') }}">Buscador <i
                 class="fa fa-search" aria-hidden="true"></i>
         </a>
-        <a type="button" class="btn btn-success float-md-right" href="{{url('reporte')}}"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
-              Descargar reporte</a>
+        <br><br>
+
+        {!! Form::open(['route' => 'reporte', 'class' => 'form-inline']) !!}
+        <div class="form-group mb-3">
+            <input type="text" disabled readonly class="form-control-plaintext" id="staticEmail2" value="Seleccione fecha reporte">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+        {!! Form::text('Fecha', null, ['class' => 'form-control','id'=>'Fecha_pago', 'required']) !!}
+        </div>
+        {!! Form::submit('Descargar', ['class' => 'form-control btn btn-success']) !!}
+        {!! Form::close() !!}
+
+
     </div>
+
+    @push('scripts')
+        <script type="text/javascript">
+            $('#Fecha_pago').datetimepicker({
+                format: 'YYYY-MM-DD',
+                useCurrent: true,
+                sideBySide: true
+            })
+        </script>
+    @endpush
 @endsection
 
 <script>

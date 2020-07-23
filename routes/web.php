@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::resource('operacionDets', 'OperacionDetController');
     Route::resource('operacionHistoricos', 'OperacionHistoricoController');
     Route::resource('grupos', 'GrupoController');
-    Route::get('/reporte', 'HomeController@export')->name('reporte');
+    Route::post('/reporte/', 'HomeController@export')->name('reporte');
     Route::resource('clientes', 'ClienteController');
     Route::resource('promesas', 'PromesaController');
 });

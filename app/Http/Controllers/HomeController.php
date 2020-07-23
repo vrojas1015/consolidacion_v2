@@ -112,8 +112,10 @@ class HomeController extends Controller
 
     public function export()
     {
-        //dd("reporte");
-        $date = date('Y-m-d');
+        $input = \request()->all();
+        //dd($input);
+        $date = $input['Fecha'];
+        //$date = date('Y-m-d');
         $año = date('Y');
         $añoA = date('Y', strtotime('-1 year'));
         $desglose = "select distinct(pr.no_proyecto) as numero_proyecto,
