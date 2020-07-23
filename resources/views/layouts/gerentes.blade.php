@@ -80,7 +80,7 @@
                 </header>
 
                 <!-- Left side column. contains the logo and sidebar -->
-            @include('layouts.sidebar')
+            @include('layouts.gerentebar')
             <!-- Content Wrapper. Contains page content -->
                 <div class="content-wrapper">
                     @yield('content')
@@ -112,7 +112,7 @@
                         </a>
                     </div>
 
-                    <!--<div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!--<div class="collapse navbar-collapse" id="app-navbar-collapse">
 
                         <ul class="nav navbar-nav">
                             <li><a href="{{ url('/home') }}">Home</a></li>
@@ -128,7 +128,7 @@
                 </div>
             </nav>
 
-        <br>
+            <br>
 
             <div id="page-content-wrapper">
                 <div class="container-fluid">

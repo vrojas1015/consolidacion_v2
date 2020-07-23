@@ -34,16 +34,13 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::resource('operacionHistoricos', 'OperacionHistoricoController');
     Route::resource('grupos', 'GrupoController');
     Route::get('/reporte', 'HomeController@export')->name('reporte');
-
+    Route::resource('clientes', 'ClienteController');
+    Route::resource('promesas', 'PromesaController');
 });
 Route::group(['middleware' => 'auth:gerente'], function () {
     Route::get('/gerente', 'GerenteController@indexGerente')->name('h_gerente');
+    Route::resource('operacionDets', 'OperacionDetController');
 });
 //Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-
-Route::resource('clientes', 'ClienteController');
-
-Route::resource('promesas', 'PromesaController');
