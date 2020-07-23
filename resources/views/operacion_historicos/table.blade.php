@@ -8,7 +8,7 @@
         <th>Estatus</th>
         <th>No Operaciones</th>
         <th>Id Concepto</th>
-                <th colspan="3">Action</th>
+                <th colspan="3">Acción</th>
             </tr>
         </thead>
         <tbody>

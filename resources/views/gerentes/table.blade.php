@@ -6,7 +6,7 @@
             <th>Nombre</th>
             <th>Email</th>
             <!--<th>Password</th>-->
-            <th colspan="3">Accion</th>
+            <th colspan="3">Acción</th>
         </tr>
         </thead>
         <tbody>

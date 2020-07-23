@@ -96,7 +96,7 @@ class HomeController extends Controller
                     <meta charset = 'utf-8' >
                     <h4 style = 'font-color: green;' align = 'center';>Central Operadora de Estacionamientos SAPI S . A . de C . V .</h4 >
                     <p align = 'center;' > Buenas tardes gerente .</p >
-                    <p align = 'center;' > Se te solicite cargues tus operaciones del dia de manera inmediata .</p >
+                    <p align = 'center;' > Se te solicita cargues tus operaciones del dia de manera inmediata .</p >
                     </html>";
             $mail->AddAddress($correo);
             $mail->IsHTML(true);

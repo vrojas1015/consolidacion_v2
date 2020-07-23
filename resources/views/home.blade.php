@@ -46,8 +46,8 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">Operaciones actuales</th>
-                            <th scope="col">Operaciones 2019</th>
-                            <th scope="col">Variacion</th>
+                            <th scope="col">Operaciones anteriores</th>
+                            <th scope="col">Variación</th>
                             <th scope="col">% Porcentaje</th>
                             <th scope="col">Boleto</th>
                             <th scope="col">Grupo</th>

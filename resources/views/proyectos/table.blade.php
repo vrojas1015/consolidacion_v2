@@ -6,7 +6,7 @@
             <th>Nombre</th>
             <th>Region</th>
             <th>Grupo</th>
-            <th colspan="3">Accion</th>
+            <th colspan="3">Acción</th>
         </tr>
         </thead>
         <tbody>

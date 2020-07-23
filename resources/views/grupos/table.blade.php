@@ -3,7 +3,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>Grupo</th>
-                <th colspan="3">Action</th>
+                <th colspan="3">Acción</th>
             </tr>
         </thead>
         <tbody>

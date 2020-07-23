@@ -4,7 +4,7 @@
         <tr>
             <th>Nombre</th>
             <th>Identificador</th>
-            <th colspan="3">Accion</th>
+            <th colspan="3">Acción</th>
         </tr>
         </thead>
         <tbody>
