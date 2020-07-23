@@ -69,6 +69,7 @@
                 </div>
             </div>
         </div>
+
         <a type="button" class="btn btn-info float-md-left" href="{{ route('desglose.index') }}">Buscador <i
                 class="fa fa-search" aria-hidden="true"></i>
         </a>

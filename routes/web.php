@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:web'], function () {
 });
 Route::group(['middleware' => 'auth:gerente'], function () {
     Route::get('/gerente', 'GerenteController@indexGerente')->name('h_gerente');
+    Route::resource('operacionDets', 'OperacionDetController');
 });
 //Route::get('/home', 'HomeController@index')->name('home');
 
